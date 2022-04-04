@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>LoadGenerator</RootNamespace>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>false</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Neon.Service" Version="10000.0.1647-dev-master" />
+        <PackageReference Include="Neon.Web" Version="10000.0.1647-dev-master" />
+        <PackageReference Include="prometheus-net" Version="5.0.2" />
+        <PackageReference Include="prometheus-net.AspNetCore" Version="5.0.2" />
+        <PackageReference Include="prometheus-net.DotNetRuntime" Version="4.2.2" />
+    </ItemGroup>
+
+</Project>

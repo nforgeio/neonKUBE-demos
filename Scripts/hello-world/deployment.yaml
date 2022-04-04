@@ -1,0 +1,54 @@
+﻿---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  labels:
+    app: hello-world
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: ghcr.io/neonkube-dev/hello-world:neonkube-0.3.0-alpha 
+        ports:
+          - name: http-web
+            containerPort: 80
+            protocol: TCP
+          - name: http-metrics
+            containerPort: 9762
+            protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+              - /health-check
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+              - /ready-check
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        startupProbe:
+          exec:
+            command:
+              - /health-check
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 5
+          successThreshold: 1
+          failureThreshold: 30
