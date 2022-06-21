@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello-world", "Services\hel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "weather-api", "Services\weather-api\weather-api.csproj", "{94F709A8-B01F-4D82-B3C5-7680610E8AD4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Images", "Images\Images.csproj", "{3DEED4B1-A288-441D-A0BB-4C096501359D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{EFDD6F07-FCD2-4A6D-BF53-DA0AD15F4F36}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -37,10 +35,6 @@ Global
 		{94F709A8-B01F-4D82-B3C5-7680610E8AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94F709A8-B01F-4D82-B3C5-7680610E8AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94F709A8-B01F-4D82-B3C5-7680610E8AD4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DEED4B1-A288-441D-A0BB-4C096501359D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DEED4B1-A288-441D-A0BB-4C096501359D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DEED4B1-A288-441D-A0BB-4C096501359D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DEED4B1-A288-441D-A0BB-4C096501359D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F70E59DB-4F02-4BB5-9787-23FB7C0B17BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F70E59DB-4F02-4BB5-9787-23FB7C0B17BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F70E59DB-4F02-4BB5-9787-23FB7C0B17BA}.Release|Any CPU.ActiveCfg = Release|Any CPU

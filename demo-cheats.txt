@@ -1,0 +1,26 @@
+
+###################################
+########### Hello world ###########
+
+cd Services/hello-world
+dotnet publish hello-world.csproj -c Release -o ./bin
+docker build -t neon-registry.caa5793dc35bfc21.neoncluster.io/library/hello-world:latest .
+docker push neon-registry.caa5793dc35bfc21.neoncluster.io/library/hello-world:latest
+
+
+###################################
+######### Load Generator ##########
+
+cd ../load-generator
+dotnet publish load-generator.csproj -c Release -o ./bin
+docker build -t neon-registry.caa5793dc35bfc21.neoncluster.io/library/load-generator:latest .
+docker push neon-registry.caa5793dc35bfc21.neoncluster.io/library/load-generator:latest
+
+###################################
+########### Weather API ###########
+
+cd ../weather-api
+dotnet publish weather-api.csproj -c Release -o ./bin
+docker build -t neon-registry.caa5793dc35bfc21.neoncluster.io/library/weather-api:latest .
+docker push neon-registry.caa5793dc35bfc21.neoncluster.io/library/weather-api:latest
+

@@ -15,10 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM        mcr.microsoft.com/dotnet/aspnet:6.0.1-focal-amd64
+FROM        mcr.microsoft.com/dotnet/aspnet:6.0.5-focal-amd64
 MAINTAINER  marcus@neonforge.com
 STOPSIGNAL  SIGTERM
-ARG         APPNAME
 
 # Environment
 
@@ -33,19 +32,15 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 # Note that we used the [core-layers] tool To separate the binary files before
 # building the container.
 
-# Dependencies
+# App files
 
-COPY bin/__dep              /usr/bin/$APPNAME.dotnet/
-RUN echo **NEW LAYER**
+COPY bin              /usr/bin/hello-world.dotnet/
 
-# App files.
-
-COPY bin/__app              /usr/bin/$APPNAME.dotnet/
 COPY docker-entrypoint.sh   /
 
 RUN chmod 700 /*.sh \
-    && echo "exec dotnet /usr/bin/$APPNAME.dotnet/$APPNAME.dll \"\$@\"" >> /usr/bin/$APPNAME \
-    && chmod 770 /usr/bin/$APPNAME \
+    && echo "exec dotnet /usr/bin/hello-world.dotnet/hello-world.dll \"\$@\"" >> /usr/bin/hello-world \
+    && chmod 770 /usr/bin/hello-world \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && sed -i 's!^#precedence ::ffff:0:0/96  10$!precedence ::ffff:0:0/96  100!g' /etc/gai.conf
 

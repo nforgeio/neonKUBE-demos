@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Neon.Service" Version="10000.0.1647-dev-master" />
-    <PackageReference Include="Neon.Web" Version="10000.0.1647-dev-master" />
+    <PackageReference Include="Neon.Service" Version="10000.0.2014-dev-master" />
+    <PackageReference Include="Neon.Web" Version="10000.0.2014-dev-master" />
     <PackageReference Include="prometheus-net" Version="5.0.2" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="5.0.2" />
     <PackageReference Include="prometheus-net.DotNetRuntime" Version="4.2.2" />
