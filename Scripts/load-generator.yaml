@@ -2,22 +2,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weather-api
+  name: load-generator
   labels:
-    app: weather-api
+    app: load-generator
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: weather-api
+      app: load-generator
   template:
     metadata:
       labels:
-        app: weather-api
+        app: load-generator
     spec:
+      volumes:
+        - name: config
+          configMap:
+            name: load-generator
       containers:
-      - name: weather-api
-        image: ghcr.io/neonkube-dev/weather-api:neonkube-0.3.0-alpha 
+      - name: load-generator
+        image: ghcr.io/neonkube-dev/load-generator:neonkube-0.3.0-alpha 
+        env:
+          - name: REQUESTS_PER_SECOND
+            value: "10"
         ports:
           - name: http-web
             containerPort: 80
@@ -25,6 +32,9 @@ spec:
           - name: http-metrics
             containerPort: 9762
             protocol: TCP
+        volumeMounts:
+          - name: config
+            mountPath: /etc/load-generator
         livenessProbe:
           exec:
             command:
@@ -52,3 +62,33 @@ spec:
           periodSeconds: 5
           successThreshold: 1
           failureThreshold: 30
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: load-generator
+data:
+  config.yaml: |
+    baseAddress: http://hello-world
+    urls:
+      - "/"
+      - "/"
+      - "/weather"
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: load-generator
+    prometheus: default
+  name: load-generator
+spec:
+  endpoints:
+    - interval: 15s
+      path: /metrics
+      scrapeTimeout: 10s
+      targetPort: 9762
+  jobLabel: load-generator
+  selector:
+    matchLabels:
+      app: load-generator

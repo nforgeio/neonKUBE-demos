@@ -76,7 +76,6 @@ namespace HelloWorld
             });
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHealthChecks("/healthz");
                 endpoints.MapMetrics();
                 endpoints.MapControllers();
             });
