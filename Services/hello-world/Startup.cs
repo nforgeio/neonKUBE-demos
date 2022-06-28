@@ -46,15 +46,11 @@ namespace HelloWorld
         /// <param name="services">The service collection.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddHealthChecks();
-            services.AddHttpClient();
-            services.AddSingleton(new JsonClient()
-            {
-                BaseAddress = new Uri("http://weather-api")
-            });
-            services.AddControllers()
-                .AddNeon();
+            services.AddHttpClient()
+                    .AddSingleton(HelloWorldService.Log)
+                    .AddSingleton(new JsonClient())
+                    .AddControllers()
+                    .AddNeon();
         }
 
         /// <summary>

@@ -34,7 +34,7 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # App files.
 
-COPY bin              /usr/bin/load-generator.dotnet/
+COPY bin/Release/net6.0     /usr/bin/load-generator.dotnet/
 COPY docker-entrypoint.sh   /
 
 RUN chmod 700 /*.sh \

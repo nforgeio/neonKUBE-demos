@@ -46,11 +46,10 @@ namespace WeatherApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddHealthChecks();
-            services.AddHttpClient();
-
-            services.AddControllers()
-                .AddNeon();
+            services.AddHttpClient()
+                    .AddSingleton(WeatherApiService.Log)
+                    .AddControllers()
+                    .AddNeon();
         }
 
         /// <summary>

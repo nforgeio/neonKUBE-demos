@@ -18,6 +18,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Neon.Collections;
 using Neon.Common;
 using Neon.Cryptography;
+using Neon.Diagnostics;
 using Neon.Net;
 using Neon.Service;
 using Neon.Tasks;
@@ -30,8 +31,9 @@ namespace HelloWorld.Controllers
     [ApiController]
     public class HelloController : NeonControllerBase
     {
-        private Service helloWorldService;
-        private JsonClient weatherClient;
+        private Service     helloWorldService;
+        private JsonClient  weatherClient;
+        private INeonLogger logger;
 
         private static readonly Counter requestCounter = Metrics.CreateCounter(
             $"{Program.Service.MetricsPrefix}_request_count",
@@ -48,12 +50,13 @@ namespace HelloWorld.Controllers
         /// <param name="helloWorldService"></param>
         /// <param name="weatherClient"></param>
         public HelloController(
-            Service helloWorldService,
-            JsonClient weatherClient
-            )
+            Service     helloWorldService,
+            JsonClient  weatherClient,
+            INeonLogger logger)
         {
             this.helloWorldService = helloWorldService;
-            this.weatherClient = weatherClient;
+            this.weatherClient     = weatherClient;
+            this.logger            = logger;
         }
 
         /// <summary>
@@ -63,17 +66,14 @@ namespace HelloWorld.Controllers
         [HttpGet("")]
         public async Task<ActionResult> HelloAsync()
         {
-            await SyncContext.ClearAsync;
+            await SyncContext.Clear;
 
             requestCounter.WithLabels(new string[] { "hello" }).Inc();
 
-            var message = $"";
+            logger.LogInfo($"Hello, World! From [{Dns.GetHostName()}]");
 
             return Content($@"<!DOCTYPE html>
 <html>
-<script>
-
-</script>
 <body>
 
 <h3>Hello, World! [{Dns.GetHostName()}]</h3>
@@ -92,12 +92,16 @@ namespace HelloWorld.Controllers
         [HttpGet("weather")]
         public async Task<ActionResult<string>> WeatherAsync([FromQuery] string zipCode = null)
         {
+            await SyncContext.Clear;
+
             requestCounter.WithLabels(new string[] { "weather" }).Inc();
+
+            logger.LogInfo($"Processing weather request for zip: [{zipCode}]");
 
             var args = new ArgDictionary();
             args.Add("zipCode", zipCode);
 
-            return await weatherClient.GetAsync<string>("/", args);
+            return await weatherClient.GetAsync<string>("http://weather-api/", args);
 
         }
 
@@ -107,7 +111,11 @@ namespace HelloWorld.Controllers
         [HttpPost("kill")]
         public async Task<ActionResult<string>> KillAsync()
         {
+            await SyncContext.Clear;
+
             requestCounter.WithLabels(new string[] { "kill" }).Inc();
+
+            logger.LogInfo($"Killing pod: [{Dns.GetHostName()}]");
 
             await helloWorldService.SetStatusAsync(NeonServiceStatus.Unhealthy);
 

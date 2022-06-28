@@ -16,6 +16,7 @@ using Microsoft.Extensions.Caching.Distributed;
 
 using Neon.Common;
 using Neon.Cryptography;
+using Neon.Diagnostics;
 using Neon.Service;
 using Neon.Web;
 
@@ -26,7 +27,8 @@ namespace WeatherApi.Controllers
     [ApiController]
     public class WeatherController : NeonControllerBase
     {
-        private Service WeatherApiService;
+        private Service     weatherApiService;
+        private INeonLogger logger;
 
         private string[] weatherOptions = { "rainy", "sunny", "cloudy", "really rainy" };
 
@@ -43,10 +45,11 @@ namespace WeatherApi.Controllers
         /// </summary>
         /// <param name="WeatherApiService"></param>
         public WeatherController(
-            Service WeatherApiService
-            )
+            Service     weatherApiService,
+            INeonLogger logger)
         {
-            this.WeatherApiService = WeatherApiService;
+            this.weatherApiService = weatherApiService;
+            this.logger            = logger;
         }
 
         /// <summary>
@@ -54,20 +57,27 @@ namespace WeatherApi.Controllers
         /// </summary>
         /// <returns>The current weather as a string</returns>
         [Route("")]
-        public async Task<string> GetWeatherByZipAzync([FromQuery] string zipCode)
+        public async Task<ActionResult<string>> GetWeatherByZipAzync([FromQuery] string zipCode)
         {
             requestCounter.Inc();
 
-            var result = new StringBuilder();
-            
-            if (!string.IsNullOrEmpty(zipCode))
+            if (string.IsNullOrEmpty(zipCode))
             {
-                result.Append($"Weather in [{zipCode}]: ");
+                logger.LogError($"ZipCode is empty");
+
+                return BadRequest("ZipCode is empty");
             }
 
-            result.Append(weatherOptions.SelectRandom(1).FirstOrDefault());
+            var weather = weatherOptions.SelectRandom(1).FirstOrDefault();
 
-            return await Task.FromResult(result.ToString());
+            var result = new StringBuilder();
+            
+            result.Append($"Weather in [{zipCode}]: ");
+            result.Append(weather);
+
+            logger.LogInfo($"Weather in zip: [{zipCode}] is [{weather}]");
+
+            return Ok(await Task.FromResult(result.ToString()));
         }
     }
 }

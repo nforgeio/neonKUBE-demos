@@ -16,6 +16,7 @@ using Neon.Common;
 using Neon.Net;
 using Neon.Service;
 using Neon.Time;
+using Neon.Tasks;
 
 namespace LoadGenerator
 {
@@ -31,6 +32,8 @@ namespace LoadGenerator
         /// <returns></returns>
         public async Task RequestAsync()
         {
+            await SyncContext.Clear;
+
             var captureTimer = new RecurringTimer("Interval:00:00:01");
             captureTimer.Set();
 
@@ -49,10 +52,31 @@ namespace LoadGenerator
                 var tasks = new List<Task>();
                 for (int i = 0; i < requestsPerSecond; i++)
                 {
-                    tasks.Add(helloWorldClient.GetAsync(endpoints.SelectRandom(1).First()));
+                    tasks.Add(GetRandomAsync());
                 }
 
                 await Task.WhenAll(tasks);
+            }
+        }
+
+        /// <summary>
+        /// Sends a get request to a random endpoint.
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetRandomAsync()
+        {
+            await SyncContext.Clear;
+
+            var endpoint = endpoints.SelectRandom(1).First();
+            
+            try
+            {
+                var result = await helloWorldClient.GetAsync(endpoint);
+                result.EnsureSuccess();
+            }
+            catch (Exception e)
+            {
+                Log.LogError("GetRandomAsync", e);
             }
         }
 
@@ -62,6 +86,8 @@ namespace LoadGenerator
         /// <returns></returns>
         private async Task ReloadConfigAsync()
         {
+            await SyncContext.Clear; 
+            
             if (int.TryParse(GetEnvironmentVariable("REQUESTS_PER_SECOND"), out var rps))
             {
                 requestsPerSecond = rps;
@@ -74,13 +100,15 @@ namespace LoadGenerator
                 // set base address
                 helloWorldClient = new JsonClient()
                 {
-                    BaseAddress = new Uri(config["baseAddress"])
+                    BaseAddress     = new Uri(config["baseAddress"]),
+                    Timeout         = TimeSpan.FromSeconds(5),
+                    SafeRetryPolicy = null
                 };
 
                 // set urls to be hit
                 endpoints = new List<string>();
-                
-                foreach(var endpoint in config["urls"])
+
+                foreach (var endpoint in config["urls"])
                 {
                     endpoints.Add((string)(endpoint));
                 }

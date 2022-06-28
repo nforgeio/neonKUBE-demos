@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: weather-api
   labels:
-    app: hello-world
+    app: weather-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-world
+      app: weather-api
   template:
     metadata:
       labels:
-        app: hello-world
+        app: weather-api
     spec:
       containers:
-      - name: hello-world
-        image: ghcr.io/neonkube-dev/hello-world:neonkube-0.3.0-alpha 
+      - name: weather-api
+        image: neon-registry.0c51e652ca1adbbc.neoncluster.io/library/weather-api:latest
         ports:
           - name: http-web
             containerPort: 80
@@ -56,12 +56,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world
+  name: weather-api
   labels:
-    app: hello-world
+    app: weather-api
 spec:
   selector:
-    app: hello-world
+    app: weather-api
   ports:
     - name: http-web
       protocol: TCP
@@ -72,39 +72,20 @@ spec:
       port: 9762
       targetPort: 9762
 ---
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: hello-world
-spec:
-  gateways:
-    - neon-ingress/neoncluster-gateway
-  hosts:
-    - hello-world.c437bbc593d8d4da.neoncluster.io
-  http:
-    - match:
-        - uri:
-            prefix: /
-      route:
-        - destination:
-            host: hello-world.default.svc.cluster.local
-            port:
-              number: 80
----
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    app: hello-world
+    app: weather-api
     prometheus: default
-  name: hello-world
+  name: weather-api
 spec:
   endpoints:
     - interval: 15s
       path: /metrics
       scrapeTimeout: 10s
       targetPort: 9762
-  jobLabel: hello-world
+  jobLabel: weather-api
   selector:
     matchLabels:
-      app: hello-world
+      app: weather-api

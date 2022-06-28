@@ -14,7 +14,10 @@ spec:
         "list": [
           {
             "builtIn": 1,
-            "datasource": "-- Grafana --",
+            "datasource": {
+              "type": "datasource",
+              "uid": "grafana"
+            },
             "enable": true,
             "hide": true,
             "iconColor": "rgba(0, 211, 255, 1)",
@@ -32,11 +35,13 @@ spec:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 34,
+      "id": 16,
+      "iteration": 1656391358741,
       "links": [],
       "liveNow": false,
       "panels": [
         {
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -95,6 +100,7 @@ spec:
             "y": 0
           },
           "id": 6,
+          "interval": "1m",
           "options": {
             "legend": {
               "calcs": [],
@@ -102,7 +108,8 @@ spec:
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "mode": "single",
+              "sort": "none"
             }
           },
           "pluginVersion": "8.3.1",
@@ -110,7 +117,7 @@ spec:
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "cortex"
+                "uid": "mimir"
               },
               "exemplar": true,
               "expr": "kube_deployment_status_replicas_available{deployment=\"hello-world\"} / kube_deployment_status_replicas{deployment=\"hello-world\"}",
@@ -121,7 +128,7 @@ spec:
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "cortex"
+                "uid": "mimir"
               },
               "exemplar": true,
               "expr": "kube_deployment_status_replicas_unavailable{deployment=\"hello-world\"} / kube_deployment_status_replicas{deployment=\"hello-world\"}",
@@ -135,6 +142,7 @@ spec:
           "type": "timeseries"
         },
         {
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -178,6 +186,7 @@ spec:
             "y": 0
           },
           "id": 15,
+          "interval": "1m",
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -192,7 +201,7 @@ spec:
             "showThresholdLabels": false,
             "showThresholdMarkers": true
           },
-          "pluginVersion": "8.3.1",
+          "pluginVersion": "9.0.0",
           "targets": [
             {
               "datasource": {
@@ -213,6 +222,10 @@ spec:
           "type": "gauge"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Datasource}"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -254,6 +267,7 @@ spec:
             "y": 5
           },
           "id": 11,
+          "interval": "1m",
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -270,12 +284,12 @@ spec:
             },
             "textMode": "auto"
           },
-          "pluginVersion": "8.3.1",
+          "pluginVersion": "9.0.0",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "cortex"
+                "uid": "mimir"
               },
               "exemplar": false,
               "expr": "sum(kube_deployment_status_replicas_available{deployment=\"hello-world\"})",
@@ -291,6 +305,7 @@ spec:
           "type": "stat"
         },
         {
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -332,6 +347,7 @@ spec:
             "y": 5
           },
           "id": 13,
+          "interval": "1m",
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -348,7 +364,7 @@ spec:
             },
             "textMode": "auto"
           },
-          "pluginVersion": "8.3.1",
+          "pluginVersion": "9.0.0",
           "targets": [
             {
               "datasource": {
@@ -369,6 +385,7 @@ spec:
           "type": "stat"
         },
         {
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -410,6 +427,7 @@ spec:
             "y": 5
           },
           "id": 12,
+          "interval": "1m",
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -426,7 +444,7 @@ spec:
             },
             "textMode": "auto"
           },
-          "pluginVersion": "8.3.1",
+          "pluginVersion": "9.0.0",
           "targets": [
             {
               "datasource": {
@@ -447,6 +465,48 @@ spec:
           "type": "stat"
         },
         {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 8
+          },
+          "id": 18,
+          "options": {
+            "dedupStrategy": "none",
+            "enableLogDetails": true,
+            "prettifyLogMessage": false,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "loki",
+                "uid": "loki"
+              },
+              "editorMode": "code",
+              "expr": "{app=~\"hello-world|weather-api\", container!=\"istio-proxy\"} | pattern `[<time>] [<level>] [<version>] [<index>] <message>` | line_format `{{.time}} [{{.pod}}] {{.level}} {{.message}}` | level=~`$Level`",
+              "legendFormat": "",
+              "queryType": "range",
+              "refId": "A"
+            }
+          ],
+          "title": "Panel Title",
+          "type": "logs"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -501,9 +561,10 @@ spec:
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 8
+            "y": 15
           },
           "id": 16,
+          "interval": "15s",
           "options": {
             "legend": {
               "calcs": [],
@@ -511,7 +572,8 @@ spec:
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "mode": "single",
+              "sort": "none"
             }
           },
           "targets": [
@@ -532,6 +594,7 @@ spec:
           "type": "timeseries"
         },
         {
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -583,12 +646,13 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 9,
+            "h": 8,
             "w": 12,
             "x": 0,
-            "y": 14
+            "y": 21
           },
           "id": 4,
+          "interval": "15s",
           "options": {
             "legend": {
               "calcs": [],
@@ -596,7 +660,8 @@ spec:
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "mode": "single",
+              "sort": "none"
             }
           },
           "targets": [
@@ -617,6 +682,7 @@ spec:
           "type": "timeseries"
         },
         {
+          "datasource": {},
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -668,12 +734,13 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 9,
+            "h": 8,
             "w": 12,
             "x": 12,
-            "y": 14
+            "y": 21
           },
           "id": 3,
+          "interval": "15s",
           "options": {
             "legend": {
               "calcs": [],
@@ -681,7 +748,8 @@ spec:
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "mode": "single",
+              "sort": "none"
             }
           },
           "targets": [
@@ -703,14 +771,51 @@ spec:
         }
       ],
       "refresh": "5s",
-      "schemaVersion": 33,
+      "schemaVersion": 36,
       "style": "dark",
       "tags": [],
       "templating": {
-        "list": []
+        "list": [
+          {
+            "current": {
+              "selected": true,
+              "text": [
+                "All"
+              ],
+              "value": [
+                "$__all"
+              ]
+            },
+            "hide": 0,
+            "includeAll": true,
+            "multi": true,
+            "name": "Level",
+            "options": [
+              {
+                "selected": true,
+                "text": "All",
+                "value": "$__all"
+              },
+              {
+                "selected": false,
+                "text": "INFO",
+                "value": "INFO"
+              },
+              {
+                "selected": false,
+                "text": "ERROR",
+                "value": "ERROR"
+              }
+            ],
+            "query": "INFO, ERROR",
+            "queryValue": "",
+            "skipUrlSync": false,
+            "type": "custom"
+          }
+        ]
       },
       "time": {
-        "from": "now-15m",
+        "from": "now-5m",
         "to": "now"
       },
       "timepicker": {
@@ -730,6 +835,6 @@ spec:
       "timezone": "",
       "title": "Hello World",
       "uid": "Xggasdfxm_Enz",
-      "version": 1,
+      "version": 4,
       "weekStart": ""
     }
