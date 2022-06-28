@@ -6,7 +6,7 @@ metadata:
     app: grafana
 spec:
   datasources:
-    - datasourceName: Cortex
+    - datasourceName: Mimir
       inputName: DS_PROMETHEUS
   json: |
     {
@@ -36,7 +36,7 @@ spec:
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
       "id": 16,
-      "iteration": 1656391358741,
+      "iteration": 1656395807678,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -493,7 +493,7 @@ spec:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "{app=~\"hello-world|weather-api\", container!=\"istio-proxy\"} | pattern `[<time>] [<level>] [<version>] [<index>] <message>` | line_format `{{.time}} [{{.pod}}] {{.level}} {{.message}}` | level=~`$Level`",
+              "expr": "{app=~\"hello-world|weather-api\", container!=\"istio-proxy\"} | pattern `[<time>] [<level>] [<version>] [<index>] <message>` | line_format `[{{.time}}] [{{.pod}}] [{{.level}}] {{.message}}` | level=~`$log_level`",
               "legendFormat": "",
               "queryType": "range",
               "refId": "A"
@@ -778,7 +778,7 @@ spec:
         "list": [
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": [
                 "All"
               ],
@@ -788,8 +788,9 @@ spec:
             },
             "hide": 0,
             "includeAll": true,
+            "label": "Log Level",
             "multi": true,
-            "name": "Level",
+            "name": "log_level",
             "options": [
               {
                 "selected": true,
@@ -805,9 +806,24 @@ spec:
                 "selected": false,
                 "text": "ERROR",
                 "value": "ERROR"
+              },
+              {
+                "selected": false,
+                "text": "DEBUG",
+                "value": "DEBUG"
+              },
+              {
+                "selected": false,
+                "text": "TRACE",
+                "value": "TRACE"
+              },
+              {
+                "selected": false,
+                "text": "WARN",
+                "value": "WARN"
               }
             ],
-            "query": "INFO, ERROR",
+            "query": "INFO, ERROR, DEBUG, TRACE, WARN",
             "queryValue": "",
             "skipUrlSync": false,
             "type": "custom"
@@ -835,6 +851,6 @@ spec:
       "timezone": "",
       "title": "Hello World",
       "uid": "Xggasdfxm_Enz",
-      "version": 4,
+      "version": 7,
       "weekStart": ""
     }
