@@ -48,7 +48,6 @@ namespace HelloWorld
         {
             services.AddHttpClient()
                     .AddSingleton(HelloWorldService.Log)
-                    .AddSingleton(new JsonClient())
                     .AddControllers()
                     .AddNeon();
         }

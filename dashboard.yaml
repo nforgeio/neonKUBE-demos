@@ -35,8 +35,8 @@ spec:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 16,
-      "iteration": 1656395807678,
+      "id": 18,
+      "iteration": 1656441604173,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -224,7 +224,7 @@ spec:
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${Datasource}"
+            "uid": "mimir"
           },
           "fieldConfig": {
             "defaults": {
@@ -262,7 +262,7 @@ spec:
           },
           "gridPos": {
             "h": 3,
-            "w": 4,
+            "w": 3,
             "x": 12,
             "y": 5
           },
@@ -342,8 +342,8 @@ spec:
           },
           "gridPos": {
             "h": 3,
-            "w": 4,
-            "x": 16,
+            "w": 3,
+            "x": 15,
             "y": 5
           },
           "id": 13,
@@ -385,6 +385,76 @@ spec:
           "type": "stat"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "mimir"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "text",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 3,
+            "x": 18,
+            "y": 5
+          },
+          "id": 20,
+          "interval": "1m",
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "9.0.0",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "mimir"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(kube_pod_container_status_restarts_total{container=\"hello-world\"}) by (container) > 0",
+              "format": "time_series",
+              "instant": true,
+              "legendFormat": "{{container}}",
+              "range": false,
+              "refId": "A"
+            }
+          ],
+          "title": "Restarts",
+          "type": "stat"
+        },
+        {
           "datasource": {},
           "fieldConfig": {
             "defaults": {
@@ -422,8 +492,8 @@ spec:
           },
           "gridPos": {
             "h": 3,
-            "w": 4,
-            "x": 20,
+            "w": 3,
+            "x": 21,
             "y": 5
           },
           "id": 12,
@@ -471,7 +541,7 @@ spec:
           },
           "gridPos": {
             "h": 7,
-            "w": 24,
+            "w": 12,
             "x": 0,
             "y": 8
           },
@@ -499,7 +569,7 @@ spec:
               "refId": "A"
             }
           ],
-          "title": "Panel Title",
+          "title": "Logs",
           "type": "logs"
         },
         {
@@ -558,10 +628,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 6,
-            "w": 24,
-            "x": 0,
-            "y": 15
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 8
           },
           "id": 16,
           "interval": "15s",
@@ -649,7 +719,7 @@ spec:
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 15
           },
           "id": 4,
           "interval": "15s",
@@ -737,7 +807,7 @@ spec:
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 21
+            "y": 15
           },
           "id": 3,
           "interval": "15s",
@@ -849,8 +919,8 @@ spec:
         ]
       },
       "timezone": "",
-      "title": "Hello World",
-      "uid": "Xggasdfxm_Enz",
-      "version": 7,
+      "title": "Hello, World!",
+      "uid": "dWgz0Uq7k",
+      "version": 11,
       "weekStart": ""
     }

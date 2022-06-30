@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello-world", "Services\hello-world\hello-world.csproj", "{522D5433-B5A2-447D-ACF9-DAA0F39F88D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "weather-api", "Services\weather-api\weather-api.csproj", "{94F709A8-B01F-4D82-B3C5-7680610E8AD4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{EFDD6F07-FCD2-4A6D-BF53-DA0AD15F4F36}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -19,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{EFDD6F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "load-generator", "services\load-generator\load-generator.csproj", "{B0333B14-7106-46C4-A9E8-B84A6AFACE30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57B5C029-981E-497E-A6E3-EAF912A16D5C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manifests", "Manifests", "{57B5C029-981E-497E-A6E3-EAF912A16D5C}"
 	ProjectSection(SolutionItems) = preProject
 		dashboard.yaml = dashboard.yaml
 		demo-cheats.txt = demo-cheats.txt
@@ -35,10 +33,6 @@ Global
 		{522D5433-B5A2-447D-ACF9-DAA0F39F88D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{522D5433-B5A2-447D-ACF9-DAA0F39F88D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{522D5433-B5A2-447D-ACF9-DAA0F39F88D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94F709A8-B01F-4D82-B3C5-7680610E8AD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94F709A8-B01F-4D82-B3C5-7680610E8AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94F709A8-B01F-4D82-B3C5-7680610E8AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94F709A8-B01F-4D82-B3C5-7680610E8AD4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,7 +43,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{522D5433-B5A2-447D-ACF9-DAA0F39F88D8} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
-		{94F709A8-B01F-4D82-B3C5-7680610E8AD4} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

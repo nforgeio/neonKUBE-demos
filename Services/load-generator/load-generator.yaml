@@ -72,16 +72,6 @@ data:
     baseAddress: http://hello-world
     urls:
       - path: "/"
-      - path: "/"
-      - path: "/"
-      - path: "/weather?zipCode=98101"
-      - path: "/weather?zipCode=98102"
-      - path: "/weather?zipCode=98103"
-      - path: "/weather?zipCode=98104"
-      - path: "/weather?zipCode=98105"
-      - path: "/weather?zipCode=98106"
-      - path: "/weather?zipCode=98107"
-      - path: "/weather?zipCode=98108"
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
