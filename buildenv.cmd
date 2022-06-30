@@ -26,4 +26,4 @@ echo The [%NF_DEMO_ROOT%\neonKUBE-Demos.sln] file does not exist.  Please pass t
 echo to the neonKUBE solution folder.
 goto done
 
-:goodPath 
+:goodPath
