@@ -35,8 +35,8 @@ spec:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 18,
-      "iteration": 1656441604173,
+      "id": 9,
+      "iteration": 1656643341231,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -536,44 +536,6 @@ spec:
         },
         {
           "datasource": {
-            "type": "loki",
-            "uid": "loki"
-          },
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 8
-          },
-          "id": 18,
-          "options": {
-            "dedupStrategy": "none",
-            "enableLogDetails": true,
-            "prettifyLogMessage": false,
-            "showCommonLabels": false,
-            "showLabels": false,
-            "showTime": false,
-            "sortOrder": "Descending",
-            "wrapLogMessage": false
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "loki",
-                "uid": "loki"
-              },
-              "editorMode": "code",
-              "expr": "{app=~\"hello-world|weather-api\", container!=\"istio-proxy\"} | pattern `[<time>] [<level>] [<version>] [<index>] <message>` | line_format `[{{.time}}] [{{.pod}}] [{{.level}}] {{.message}}` | level=~`$log_level`",
-              "legendFormat": "",
-              "queryType": "range",
-              "refId": "A"
-            }
-          ],
-          "title": "Logs",
-          "type": "logs"
-        },
-        {
-          "datasource": {
             "type": "prometheus",
             "uid": "mimir"
           },
@@ -630,7 +592,7 @@ spec:
           "gridPos": {
             "h": 7,
             "w": 12,
-            "x": 12,
+            "x": 0,
             "y": 8
           },
           "id": 16,
@@ -716,98 +678,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 8,
-            "w": 12,
-            "x": 0,
-            "y": 15
-          },
-          "id": 4,
-          "interval": "15s",
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cortex"
-              },
-              "exemplar": true,
-              "expr": "sum(irate(helloworld_request_count{}[$__rate_interval])) by (route)",
-              "interval": "1m",
-              "intervalFactor": 1,
-              "legendFormat": "{{pod}}",
-              "refId": "A"
-            }
-          ],
-          "title": "Requests by route (per second)",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {},
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
+            "h": 7,
             "w": 12,
             "x": 12,
-            "y": 15
+            "y": 8
           },
           "id": 3,
           "interval": "15s",
@@ -838,6 +712,44 @@ spec:
           ],
           "title": "Requests by pod (per second)",
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 15
+          },
+          "id": 18,
+          "options": {
+            "dedupStrategy": "none",
+            "enableLogDetails": true,
+            "prettifyLogMessage": false,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "loki",
+                "uid": "loki"
+              },
+              "editorMode": "code",
+              "expr": "{app=~\"hello-world|weather-api\", container!=\"istio-proxy\"} | pattern `[<time>] [<level>] [<version>] [<index>] <message>` | line_format `[{{.time}}] [{{.pod}}] [{{.level}}] {{.message}}` | level=~`$log_level`",
+              "legendFormat": "",
+              "queryType": "range",
+              "refId": "A"
+            }
+          ],
+          "title": "Logs",
+          "type": "logs"
         }
       ],
       "refresh": "5s",
@@ -848,7 +760,7 @@ spec:
         "list": [
           {
             "current": {
-              "selected": false,
+              "selected": true,
               "text": [
                 "All"
               ],
@@ -921,6 +833,6 @@ spec:
       "timezone": "",
       "title": "Hello, World!",
       "uid": "dWgz0Uq7k",
-      "version": 11,
+      "version": 3,
       "weekStart": ""
     }

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: neon-registry.0c51e652ca1adbbc.neoncluster.io/library/hello-world
+        image: neon-registry.e10a9ea8db67cb78.neoncluster.io/library/hello-world
         ports:
           - name: http-web
             containerPort: 80
@@ -25,6 +25,9 @@ spec:
           - name: http-metrics
             containerPort: 9762
             protocol: TCP
+        env:
+          - name: LOG_LEVEL
+            value: DEBUG
         livenessProbe:
           exec:
             command:
@@ -33,7 +36,7 @@ spec:
           timeoutSeconds: 1
           periodSeconds: 5
           successThreshold: 1
-          failureThreshold: 3
+          failureThreshold: 1
         readinessProbe:
           exec:
             command:
@@ -42,7 +45,7 @@ spec:
           timeoutSeconds: 1
           periodSeconds: 5
           successThreshold: 1
-          failureThreshold: 3
+          failureThreshold: 1
         startupProbe:
           exec:
             command:
@@ -80,7 +83,7 @@ spec:
   gateways:
     - neon-ingress/neoncluster-gateway
   hosts:
-    - hello-world.0c51e652ca1adbbc.neoncluster.io
+    - hello-world.e10a9ea8db67cb78.neoncluster.io
   http:
     - match:
         - uri:
