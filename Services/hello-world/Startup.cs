@@ -59,7 +59,7 @@ namespace HelloWorld
         /// <param name="env">Specifies the web hosting environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (HelloWorldService.InDevelopment || !string.IsNullOrEmpty(HelloWorldService.GetEnvironmentVariable("DEBUG")))
+            if (HelloWorldService.InDevelopment)
             {
                 app.UseDeveloperExceptionPage();
             }

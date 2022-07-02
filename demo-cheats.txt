@@ -1,26 +1,18 @@
-
 ###################################
-########### Hello world ###########
+########## Publish images #########
 
 cd Services/hello-world
 dotnet publish hello-world.csproj -c Release -o ./bin
-docker build -t neon-registry.0c51e652ca1adbbc.neoncluster.io/library/hello-world:latest .
-docker push neon-registry.0c51e652ca1adbbc.neoncluster.io/library/hello-world:latest
+docker build -t neon-registry.CLUSTER_ID.neoncluster.io/library/hello-world:latest .
+docker push neon-registry.CLUSTER_ID.neoncluster.io/library/hello-world:latest
 
 
-###################################
-######### Load Generator ##########
+
 
 cd ../load-generator
 dotnet publish load-generator.csproj -c Release -o ./bin
-docker build -t neon-registry.0c51e652ca1adbbc.neoncluster.io/library/load-generator:latest .
-docker push neon-registry.0c51e652ca1adbbc.neoncluster.io/library/load-generator:latest
+docker build -t neon-registry.CLUSTER_ID.neoncluster.io/library/load-generator:latest .
+docker push neon-registry.CLUSTER_ID.neoncluster.io/library/load-generator:latest
+cd ../../
 
-###################################
-########### Weather API ###########
-
-cd ../weather-api
-dotnet publish weather-api.csproj -c Release -o ./bin
-docker build -t neon-registry.0c51e652ca1adbbc.neoncluster.io/library/weather-api:latest .
-docker push neon-registry.0c51e652ca1adbbc.neoncluster.io/library/weather-api:latest
 
