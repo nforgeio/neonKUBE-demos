@@ -66,7 +66,7 @@ namespace HelloWorld.Controllers
 
             requestCounter.WithLabels(new string[] { "hello" }).Inc();
 
-            logger.LogInfo($"Hello, World! From [{Dns.GetHostName()}]");
+            logger.LogDebug($"Hello, World! From [{Dns.GetHostName()}]");
 
             return Content($@"<!DOCTYPE html>
 <html>

@@ -24,7 +24,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manifests", "Manifests", "{
 		azure-demo.cluster.yaml = azure-demo.cluster.yaml
 		demo-cheats.txt = demo-cheats.txt
 		helloworld.yaml = helloworld.yaml
-		loadgen.yaml = loadgen.yaml
 	EndProjectSection
 EndProject
 Global
