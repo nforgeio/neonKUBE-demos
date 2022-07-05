@@ -1,0 +1,21 @@
+name: demo-azure
+kubernetes:
+  allowPodsOnMasters: true
+hosting:
+  environment: azure
+  azure:
+    subscriptionId: $<<<secret:AZURE_NEONFORGE[SUBSCRIPTION_ID]>>>
+    tenantId: $<<<secret:AZURE_NEONFORGE[TENANT_ID]>>>
+    clientId: $<<<secret:AZURE_NEONFORGE[CLIENT_ID]>>>
+    clientSecret: $<<<secret:AZURE_NEONFORGE[CLIENT_SECRET]>>>
+    region: centralus
+    defaultVmSize: Standard_D4as_v4
+nodes:
+   master-0:
+     role: master
+   worker-0:
+     role: worker
+   worker-1:
+     role: worker
+   worker-2:
+     role: worker

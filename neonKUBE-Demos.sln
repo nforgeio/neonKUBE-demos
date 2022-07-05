@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "load-generator", "services\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manifests", "Manifests", "{57B5C029-981E-497E-A6E3-EAF912A16D5C}"
 	ProjectSection(SolutionItems) = preProject
+		aws-demo.cluster.yaml = aws-demo.cluster.yaml
 		dashboard.yaml = dashboard.yaml
+		azure-demo.cluster.yaml = azure-demo.cluster.yaml
 		demo-cheats.txt = demo-cheats.txt
 		helloworld.yaml = helloworld.yaml
 		loadgen.yaml = loadgen.yaml

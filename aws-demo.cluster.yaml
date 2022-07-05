@@ -1,0 +1,20 @@
+name: demo-aws
+kubernetes:
+  allowPodsOnMasters: true
+hosting:
+  environment: aws
+  aws:
+    accessKeyId: $<<<secret:AWS_NEONFORGE[ACCESS_KEY_ID]>>>
+    secretAccessKey: $<<<secret:AWS_NEONFORGE[SECRET_ACCESS_KEY]>>>
+    availabilityZone: us-west-2a
+    defaultEbsOptimized: true
+    defaultInstanceType: c5.2xlarge
+nodes:
+   master-0:
+     role: master
+   worker-0:
+     role: worker
+   worker-1:
+     role: worker
+   worker-2:
+     role: worker
