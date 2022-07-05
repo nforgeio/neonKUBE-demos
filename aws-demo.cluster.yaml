@@ -1,4 +1,4 @@
-name: demo-aws
+name: aws-demo
 kubernetes:
   allowPodsOnMasters: true
 hosting:
