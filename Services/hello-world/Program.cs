@@ -1,8 +1,3 @@
-//-----------------------------------------------------------------------------
-// FILE:	    Program.cs
-// CONTRIBUTOR: Marcus Bowyer
-// COPYRIGHT:   Copyright (c) 2005-2022 by neonFORGE LLC.  All rights reserved.
-
 using System;
 using System.Threading.Tasks;
 
@@ -13,20 +8,10 @@ using Prometheus.DotNetRuntime;
 
 namespace HelloWorld
 {
-    /// <summary>
-    /// Holds the global program state.
-    /// </summary>
     public static partial class Program
     {
-        /// <summary>
-        /// Returns the program's service implementation.
-        /// </summary>
         public static Service Service { get; private set; }
 
-        /// <summary>
-        /// The program entrypoint.
-        /// </summary>
-        /// <param name="args">The command line arguments.</param>
         public static async Task Main(string[] args)
         {
             try
