@@ -7,8 +7,6 @@ namespace LoadGenerator
 {
     public static class Program
     {
-        private const int concurrentRequests = 10;
-
         public static async Task Main(string[] args)
         {
             var client = new HttpClient();
@@ -17,13 +15,13 @@ namespace LoadGenerator
             {
                 var tasks = new List<Task>();
 
-                for (int i = 0; i < concurrentRequests; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     tasks.Add(client.GetAsync("http://hello-world"));
                 }
 
                 await Task.WhenAll(tasks);
-                await Task.Delay(1000);
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
         }
     }
