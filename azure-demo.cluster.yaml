@@ -1,6 +1,4 @@
 name: azure-demo
-kubernetes:
-  allowPodsOnMasters: true
 hosting:
   environment: azure
   azure:

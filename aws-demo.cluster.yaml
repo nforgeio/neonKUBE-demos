@@ -1,6 +1,4 @@
 name: aws-demo
-kubernetes:
-  allowPodsOnMasters: true
 hosting:
   environment: aws
   aws:
