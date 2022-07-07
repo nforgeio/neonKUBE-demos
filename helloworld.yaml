@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: neon-registry.CLUSTER_ID.neoncluster.io/library/hello-world
+        image: neon-registry.node.local/library/hello-world
         ports:
           - name: http-web
             containerPort: 80
@@ -49,6 +49,7 @@ spec:
         startupProbe:
           exec:
             command:
+
               - /health-check
           initialDelaySeconds: 15
           timeoutSeconds: 1
@@ -83,7 +84,7 @@ spec:
   gateways:
     - neon-ingress/neoncluster-gateway
   hosts:
-    - hello-world.CLUSTER_ID.neoncluster.io
+    - hello-world.69d36426e6232f9d.neoncluster.io
   http:
     - match:
         - uri:
@@ -130,7 +131,7 @@ spec:
     spec:
       containers:
       - name: load-generator
-        image: neon-registry.CLUSTER_ID.neoncluster.io/library/load-generator
+        image: neon-registry.node.local/library/load-generator
         env:
           - name: REQUESTS_PER_SECOND
             value: "10"
