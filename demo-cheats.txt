@@ -1,18 +1,23 @@
-###################################
-########## Publish images #########
+REM Configure environment variables
 
-cd Services/hello-world
+set DEMO_DIR=C:\src\neonKUBE-demos
+set CLUSTER_ID=69d36426e6232f9d
+
+REM Build the hello-world and load-gen apps and container images and then
+REM push the images to the cluster Harbor registry.
+
+cd %DEMO_DIR%\Services\hello-world
 dotnet publish hello-world.csproj -c Release -o ./bin
-docker build -t neon-registry.CLUSTER_ID.neoncluster.io/library/hello-world:latest .
-docker push neon-registry.CLUSTER_ID.neoncluster.io/library/hello-world:latest
+docker build -t neon-registry.%CLUSTER_ID%.neoncluster.io/library/hello-world:latest .
+docker push neon-registry.%CLUSTER_ID%.neoncluster.io/library/hello-world:latest
 
-
-
-
-cd ../load-generator
+cd %DEMO_DIR%\Services\load-generator
 dotnet publish load-generator.csproj -c Release -o ./bin
-docker build -t neon-registry.CLUSTER_ID.neoncluster.io/library/load-generator:latest .
-docker push neon-registry.CLUSTER_ID.neoncluster.io/library/load-generator:latest
-cd ../../
+docker build -t neon-registry.%CLUSTER_ID%.neoncluster.io/library/load-generator:latest .
+docker push neon-registry.%CLUSTER_ID%.neoncluster.io/library/load-generator:latest
 
+cd %DEMO_DIR%
 
+REM Use neon-cli to deploy hello-world, load-gen, and a custom Grafana dashboard to the cluster
+
+neon apply -f helloworld.yaml
