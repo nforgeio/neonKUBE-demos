@@ -40,11 +40,6 @@ namespace HelloWorld
 
             int port = 80;
 
-            if (NeonHelper.IsDevWorkstation)
-            {
-                port = 0;
-            }
-
             // Start the web service.
 
             webHost = new WebHostBuilder()

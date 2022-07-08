@@ -24,10 +24,11 @@ namespace HelloWorld
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient()
-                    .AddSingleton(HelloWorldService.Log)
-                    .AddControllers()
-                    .AddNeon();
+            services
+                .AddHttpClient()
+                .AddSingleton(HelloWorldService.Log)
+                .AddControllers()
+                .AddNeon();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -36,14 +37,10 @@ namespace HelloWorld
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseRouting();
-            app.UseHttpMetrics(options =>
-            {
-                options.AddRouteParameter("page");
-            });
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapMetrics();
                 endpoints.MapControllers();
             });
         }

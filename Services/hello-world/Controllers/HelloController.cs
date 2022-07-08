@@ -53,13 +53,17 @@ namespace HelloWorld.Controllers
 
             requestCounter.WithLabels(new string[] { "hello" }).Inc();
 
-            logger.LogDebug($"Hello, World! From [{podName}]");
+            logger.LogDebug($"HELLO request received");
 
             return Content(
 $@"<!DOCTYPE html>
 <html>
 <body>
-    <h3>Hello, World! [{podName}]</h3>
+    <h3>
+    Hello, World!<br/></br>
+    From pod: {podName}
+    </h3>
+
     <form action=""kill"" method=""post"">
         <input type=""submit"" name=""killpod"" value=""Kill pod"" />
     </form>
