@@ -13,6 +13,6 @@ docker push neon-registry.%CLUSTER_ID%.neoncluster.io/library/load-generator
 
 cd %DEMO_DIR%
 cp helloworld.yaml "%TEMP%\helloworld.yaml"
-neon-build replace "%TEMP%\helloworld.yaml" CLUSTER_ID %CLUSTER_ID%
+neon-build replace "%TEMP%\helloworld.yaml" "$<CLUSTER_ID>" %CLUSTER_ID%
 neon apply -f "%TEMP%\helloworld.yaml"
 rm "%TEMP%\helloworld.yaml"

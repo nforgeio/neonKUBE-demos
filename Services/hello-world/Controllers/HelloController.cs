@@ -28,9 +28,10 @@ namespace HelloWorld.Controllers
     {
         private Service     helloWorldService;
         private INeonLogger logger;
+        private string      podName;
 
         private static readonly Counter requestCounter = Metrics.CreateCounter(
-            name:          $"{Program.Service.MetricsPrefix}_request_count",
+            name:          "helloworld_request_count",
             help:          "Received requests.",
             configuration: new CounterConfiguration()
             {
@@ -38,12 +39,11 @@ namespace HelloWorld.Controllers
                 LabelNames           = new string[] { "route" }
             });
 
-        public HelloController(
-            Service     helloWorldService,
-            INeonLogger logger)
+        public HelloController(Service helloWorldService, INeonLogger logger)
         {
             this.helloWorldService = helloWorldService;
             this.logger            = logger;
+            this.podName           = Dns.GetHostName();
         }
 
         [HttpGet("")]
@@ -53,12 +53,13 @@ namespace HelloWorld.Controllers
 
             requestCounter.WithLabels(new string[] { "hello" }).Inc();
 
-            logger.LogDebug($"Hello, World! From [{Dns.GetHostName()}]");
+            logger.LogDebug($"Hello, World! From [{podName}]");
 
-            return Content($@"<!DOCTYPE html>
+            return Content(
+$@"<!DOCTYPE html>
 <html>
 <body>
-    <h3>Hello, World! [{Dns.GetHostName()}]</h3>
+    <h3>Hello, World! [{podName}]</h3>
     <form action=""kill"" method=""post"">
         <input type=""submit"" name=""killpod"" value=""Kill pod"" />
     </form>
@@ -69,14 +70,23 @@ contentEncoding: Encoding.UTF8);
         }
 
         [HttpPost("kill")]
-        public async Task<ActionResult<string>> KillAsync()
+        public async Task<ActionResult> KillAsync()
         {
             await SyncContext.Clear;
 
-            logger.LogInfo($"Killing pod: [{Dns.GetHostName()}]");
+            logger.LogInfo($"Killing pod: [{podName}]");
             await helloWorldService.SetStatusAsync(NeonServiceStatus.Unhealthy);
 
-            return Redirect("/");
+
+            return Content(
+$@"<!DOCTYPE html>
+<html>
+<body>
+    <h3>Goodbye, World! [{podName}]</h3>
+</body>
+</html>",
+contentType:     "text/html",
+contentEncoding: Encoding.UTF8);
         }
     }
 }

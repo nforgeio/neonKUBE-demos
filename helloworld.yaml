@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: neon-registry.CLUSTER_ID.neoncluster.io/library/hello-world
+        image: neon-registry.$<CLUSTER_ID> .neoncluster.io/library/hello-world
         imagePullPolicy: Always
         ports:
           - name: http-web
@@ -84,7 +84,7 @@ spec:
   gateways:
     - neon-ingress/neoncluster-gateway
   hosts:
-    - hello-world.CLUSTER_ID.neoncluster.io
+    - hello-world.$<CLUSTER_ID> .neoncluster.io
   http:
     - match:
         - uri:
@@ -131,7 +131,7 @@ spec:
     spec:
       containers:
       - name: load-generator
-        image: neon-registry.CLUSTER_ID.neoncluster.io/library/load-generator
+        image: neon-registry.$<CLUSTER_ID> .neoncluster.io/library/load-generator
         imagePullPolicy: Always
         env:
           - name: REQUESTS_PER_SECOND
