@@ -1,13 +1,15 @@
 set DEMO_DIR=C:\src\neonKUBE-demos
-set CLUSTER_ID=63cecb02a66f2ed3
+set CLUSTER_ID=e860fc6606cf101e
 
 cd %DEMO_DIR%\Services\hello-world
 dotnet publish hello-world.csproj -c Release -o .\bin\Release\net6.0\publish
+unix-text docker-entrypoint.sh
 docker build -t neon-registry.%CLUSTER_ID%.neoncluster.io/library/hello-world .
 docker push neon-registry.%CLUSTER_ID%.neoncluster.io/library/hello-world
 
 cd %DEMO_DIR%\Services\load-generator
 dotnet publish load-generator.csproj -c Release -o .\bin\Release\net6.0\publish
+unix-text docker-entrypoint.sh
 docker build -t neon-registry.%CLUSTER_ID%.neoncluster.io/library/load-generator .
 docker push neon-registry.%CLUSTER_ID%.neoncluster.io/library/load-generator
 
