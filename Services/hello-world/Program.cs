@@ -14,9 +14,11 @@ namespace HelloWorld
 
         public static async Task Main(string[] args)
         {
+Console.WriteLine($"MAIN: 0");
             try
             {
                 Service = new Service("hello-world");
+Console.WriteLine($"MAIN: 1");
 
                 Service.MetricsOptions.Mode = MetricsMode.Scrape;
                 Service.MetricsOptions.Path = "metrics/";
@@ -29,6 +31,7 @@ namespace HelloWorld
                             .StartCollecting();
                     };
 
+Console.WriteLine($"MAIN: 2");
                 Environment.Exit(await Service.RunAsync());
             }
             catch (Exception e)

@@ -13,5 +13,4 @@ RUN chmod 700 /*.sh \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && sed -i 's!^#precedence ::ffff:0:0/96  10$!precedence ::ffff:0:0/96  100!g' /etc/gai.conf
 
-# ENTRYPOINT ["/docker-entrypoint.sh"]
-ENTRYPOINT ["sleep", "600"]
+ENTRYPOINT ["/docker-entrypoint.sh"]

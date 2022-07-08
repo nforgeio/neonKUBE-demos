@@ -1,3 +1,5 @@
 #!/bin/bash
 
-exec /usr/bin/dotnet /hello-world/hello-world.dll
+set PATH=$PATH:/usr/bin
+
+exec dotnet /hello-world/hello-world.dll

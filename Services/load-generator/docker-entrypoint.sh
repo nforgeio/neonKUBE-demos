@@ -1,3 +1,5 @@
 #!/bin/bash
 
-exec /usr/bin/dotnet /load-generator/load-generator.dll
+set PATH=$PATH:/usr/bin
+
+exec dotnet /load-generator/load-generator.dll
