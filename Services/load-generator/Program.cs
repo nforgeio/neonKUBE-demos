@@ -13,14 +13,22 @@ namespace LoadGenerator
 
             while (true)
             {
-                var tasks = new List<Task>();
-
-                for (int i = 0; i < 10; i++)
+                try
                 {
-                    tasks.Add(client.GetAsync("http://hello-world"));
+                    var tasks = new List<Task>();
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        tasks.Add(client.GetAsync("http://hello-world"));
+                    }
+
+                    await Task.WhenAll(tasks);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"ERROR: {e.GetType().FullName}: {e.Message}");
                 }
 
-                await Task.WhenAll(tasks);
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }
         }
