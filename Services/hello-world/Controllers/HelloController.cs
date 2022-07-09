@@ -59,6 +59,7 @@ namespace HelloWorld.Controllers
 $@"<!DOCTYPE html>
 <html>
 <body>
+    <a href='/'>[Home]</a>
     <h3>
     Hello, World!<br/></br>
     From pod: {podName}
@@ -81,11 +82,11 @@ contentEncoding: Encoding.UTF8);
             logger.LogInfo($"Killing pod: [{podName}]");
             await helloWorldService.SetStatusAsync(NeonServiceStatus.Unhealthy);
 
-
             return Content(
 $@"<!DOCTYPE html>
 <html>
 <body>
+    <a href='/'>[Home]</a>
     <h3>Goodbye, World! [{podName}]</h3>
 </body>
 </html>",

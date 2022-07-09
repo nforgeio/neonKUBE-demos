@@ -1,11 +1,23 @@
+#==============================================================================
+# Run this first to configure the custom dashboard and start hello-world
+
 set DEMO_DIR=C:\src\neonKUBE-demos
-set CLUSTER_ID=e860fc6606cf101e
+set CLUSTER_ID=9dfcfd5fe74878f7
 
 cd %DEMO_DIR%\Services\hello-world
 dotnet publish hello-world.csproj -c Release -o .\bin\Release\net6.0\publish
 unix-text docker-entrypoint.sh
 docker build -t neon-registry.%CLUSTER_ID%.neoncluster.io/library/hello-world .
 docker push neon-registry.%CLUSTER_ID%.neoncluster.io/library/hello-world
+
+cd %DEMO_DIR%
+cp helloworld.yaml "%TEMP%\helloworld.yaml"
+neon-build replace "%TEMP%\helloworld.yaml" "$<CLUSTER_ID>" %CLUSTER_ID%
+neon apply -f "%TEMP%\helloworld.yaml"
+rm "%TEMP%\helloworld.yaml"
+
+#==============================================================================
+# Run this second, after we've played around site manually
 
 cd %DEMO_DIR%\Services\load-generator
 dotnet publish load-generator.csproj -c Release -o .\bin\Release\net6.0\publish
@@ -14,7 +26,7 @@ docker build -t neon-registry.%CLUSTER_ID%.neoncluster.io/library/load-generator
 docker push neon-registry.%CLUSTER_ID%.neoncluster.io/library/load-generator
 
 cd %DEMO_DIR%
-cp helloworld.yaml "%TEMP%\helloworld.yaml"
-neon-build replace "%TEMP%\helloworld.yaml" "$<CLUSTER_ID>" %CLUSTER_ID%
-neon apply -f "%TEMP%\helloworld.yaml"
-rm "%TEMP%\helloworld.yaml"
+cp loadgen.yaml "%TEMP%\loadgen.yaml"
+neon-build replace "%TEMP%\loadgen.yaml" "$<CLUSTER_ID>" %CLUSTER_ID%
+neon apply -f "%TEMP%\loadgen.yaml"
+rm "%TEMP%\loadgen.yaml"
