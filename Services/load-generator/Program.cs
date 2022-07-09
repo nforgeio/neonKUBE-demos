@@ -16,7 +16,7 @@ namespace LoadGenerator
                 _ = LoadLoop(client);
             }
 
-            await Task.Delay(TimeSpan.FromDays(365));
+            await Task.Delay(TimeSpan.FromDays(1));
         }
 
         private static async Task LoadLoop(HttpClient client)
