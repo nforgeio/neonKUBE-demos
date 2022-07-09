@@ -11,18 +11,21 @@ namespace LoadGenerator
         {
             var client = new HttpClient();
 
+            for (int i = 0; i < 10; i++)
+            {
+                _ = LoadLoop(client);
+            }
+
+            await Task.Delay(TimeSpan.FromDays(365));
+        }
+
+        private static async Task LoadLoop(HttpClient client)
+        {
             while (true)
             {
                 try
                 {
-                    var tasks = new List<Task>();
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        tasks.Add(client.GetAsync("http://hello-world"));
-                    }
-
-                    await Task.WhenAll(tasks);
+                    await client.GetAsync("http://hello-world");
                 }
                 catch (Exception e)
                 {

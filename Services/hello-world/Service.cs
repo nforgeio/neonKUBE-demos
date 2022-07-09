@@ -40,6 +40,16 @@ namespace HelloWorld
 
             int port = 80;
 
+            // Pause for a random amount of time between 5-10 seconds to give
+            // the demononstrator a chance to go back to the [hello-world]
+            // dashboard so folks can see replicas come online and the random
+            // part should make this more interesting (i.e. the pods don't
+            // at start at once.
+
+            var randomDelay = NeonHelper.PseudoRandomTimespan(TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(10));
+
+            await Task.Delay(randomDelay);
+
             // Start the web service.
 
             webHost = new WebHostBuilder()
