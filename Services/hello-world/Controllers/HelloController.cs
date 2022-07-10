@@ -47,7 +47,7 @@ namespace HelloWorld.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult> HelloAsync()
+        public async Task<ActionResult> HomePage()
         {
             await SyncContext.Clear;
 
@@ -75,7 +75,7 @@ contentEncoding: Encoding.UTF8);
         }
 
         [HttpPost("kill")]
-        public async Task<ActionResult> KillAsync()
+        public async Task<ActionResult> KillPage()
         {
             await SyncContext.Clear;
 

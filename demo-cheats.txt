@@ -2,7 +2,7 @@
 # Run this first to configure the custom dashboard and start hello-world
 
 set DEMO_DIR=C:\src\neonKUBE-demos
-set CLUSTER_ID=9dfcfd5fe74878f7
+set CLUSTER_ID=c9abaf75473d2c81
 
 cd %DEMO_DIR%\Services\hello-world
 dotnet publish hello-world.csproj -c Release -o .\bin\Release\net6.0\publish
