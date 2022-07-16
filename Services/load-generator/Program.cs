@@ -13,13 +13,13 @@ namespace LoadGenerator
 
             for (int i = 0; i < 10; i++)
             {
-                _ = LoadLoop(client);
+                _ = LoadGen(client);
             }
 
             await Task.Delay(TimeSpan.FromDays(1));
         }
 
-        private static async Task LoadLoop(HttpClient client)
+        private static async Task LoadGen(HttpClient client)
         {
             while (true)
             {

@@ -80,6 +80,7 @@ contentEncoding: Encoding.UTF8);
             await SyncContext.Clear;
 
             logger.LogInfo($"Killing pod: [{podName}]");
+
             await helloWorldService.SetStatusAsync(NeonServiceStatus.Unhealthy);
 
             return Content(
