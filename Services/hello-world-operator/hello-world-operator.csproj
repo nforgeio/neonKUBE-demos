@@ -16,10 +16,10 @@
     <ItemGroup>
         <PackageReference Include="KubernetesClient" Version="10.0.31" />
         <PackageReference Include="Macross.Json.Extensions" Version="3.0.0" />
-        <PackageReference Include="Neon.Service" Version="10000.0.2919-dev-master" />
-        <PackageReference Include="Neon.Kube" Version="10000.0.3624-dev-master" />
-        <PackageReference Include="Neon.Kube.Operator" Version="10000.0.3624-dev-master" />
-        <PackageReference Include="Neon.Kube.Resources" Version="10000.0.3624-dev-master" />
+        <PackageReference Include="Neon.Service" Version="3.0.0-preview0" />
+        <PackageReference Include="Neon.Kube" Version="0.8.9-alpha" />
+        <PackageReference Include="Neon.Kube.Operator" Version="0.8.9-alpha" />
+        <PackageReference Include="Neon.Kube.Resources" Version="0.8.9-alpha" />
         <PackageReference Include="prometheus-net" Version="8.0.0" />
         <PackageReference Include="prometheus-net.DotNetRuntime" Version="4.4.0" />
     </ItemGroup>
