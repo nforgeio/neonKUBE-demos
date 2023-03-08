@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{EFDD6F
 		.gitignore = .gitignore
 		buildenv.cmd = buildenv.cmd
 		LICENSE = LICENSE
+		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -24,9 +25,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manifests", "Manifests", "{
 		azure-demo.cluster.yaml = azure-demo.cluster.yaml
 		dashboard.yaml = dashboard.yaml
 		demo-cheats.txt = demo-cheats.txt
-		helloworld.yaml = helloworld.yaml
+		hello-world-operator.yaml = hello-world-operator.yaml
+		helloworld-standalone.yaml = helloworld-standalone.yaml
 		loadgen.yaml = loadgen.yaml
+		helloworld.yaml = helloworld.yaml
+		publish.ps1 = publish.ps1
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello-world-operator", "services\hello-world-operator\hello-world-operator.csproj", "{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +48,10 @@ Global
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +59,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{522D5433-B5A2-447D-ACF9-DAA0F39F88D8} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
+		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90D8FBE4-43D4-4DF7-ACBD-5F47E6DC5B6C}

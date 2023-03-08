@@ -1,12 +1,14 @@
 using System;
-
+using System.Diagnostics;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Neon.Common;
 using Neon.Web;
 
+using OpenTelemetry;
+using OpenTelemetry.Trace;
 using Prometheus;
 
 namespace HelloWorld
@@ -26,9 +28,8 @@ namespace HelloWorld
         {
             services
                 .AddHttpClient()
-                .AddSingleton(HelloWorldService.Log)
-                .AddControllers()
-                .AddNeon();
+                .AddSingleton(HelloWorldService.Logger)
+                .AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,6 +40,10 @@ namespace HelloWorld
             }
 
             app.UseRouting();
+            app.UseMetricServer(options =>
+            {
+                options.EnableOpenMetrics = true;
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Neon.Common;
 using Neon.Service;
 
+using Prometheus;
 using Prometheus.DotNetRuntime;
 
 namespace HelloWorld

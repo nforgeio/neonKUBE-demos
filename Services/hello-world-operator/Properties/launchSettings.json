@@ -1,0 +1,21 @@
+{
+    "profiles": {
+        "hello-world-operator": {
+            "commandName": "Project",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "applicationUrl": "http://localhost:11005",
+            "devTunnelEnabled": true,
+            "devTunnelAccess": "Public"
+        },
+        "RBAC": {
+            "commandName": "Project",
+            "commandLineArgs": "generate rbac --namespace default",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "externalUrlConfiguration": true
+        }
+    }
+}

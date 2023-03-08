@@ -17,5 +17,5 @@ spec:
     spec:
       containers:
       - name: load-generator
-        image: neon-registry.$<CLUSTER_ID>.neoncluster.io/library/load-generator
+        image: neon-registry.$CLUSTER_ID.neoncluster.io/library/load-generator
         imagePullPolicy: Always

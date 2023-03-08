@@ -6,7 +6,7 @@ ENV TZ=UTC
 ENV DEBIAN_FRONTEND noninteractive
 ENV DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-COPY bin/Release/7.0/publish     /load-generator
+COPY bin/Release/7.0/publish     /hello-world-operator
 COPY docker-entrypoint.sh           /
 
 RUN chmod 700 /*.sh \
