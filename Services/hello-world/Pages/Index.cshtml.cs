@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using Neon.Common;
+using System.Linq;
 
 namespace HelloWorld.Pages
 {
@@ -12,8 +13,6 @@ namespace HelloWorld.Pages
         public string PodNamespace { get; }
         public string PodName { get; }
         public string NodeName { get; }
-
-        public string User { get; set; }
 
         private readonly ILogger<IndexModel> logger;
         private readonly Service helloWorldService;
@@ -31,7 +30,6 @@ namespace HelloWorld.Pages
 
         public void OnGet()
         {
-            this.User = NeonHelper.JsonSerialize(HttpContext.User.Identity.Name);
         }
     }
 }
