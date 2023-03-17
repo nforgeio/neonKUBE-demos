@@ -1,0 +1,28 @@
+﻿@page "/"
+@model IndexModel
+@{
+    ViewData["Title"] = "Hello, neonkube!";
+}
+
+<div id="message">
+    <h3>
+        Hello, World!
+    </h3>
+</div>
+<div id="info">
+    <table>
+        <tr>
+            <th>namespace:</th>
+            <td>@Model.PodNamespace</td>
+        </tr>
+        <tr>
+            <th>pod:</th>
+            <td>@Model.PodName</td>
+        </tr>
+        <tr>
+            <th>node:</th>
+            <td>@Model.NodeName</td>
+        </tr>
+    </table>
+</div>
+User: @Model.User

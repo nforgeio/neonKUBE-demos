@@ -43,7 +43,7 @@ namespace LoadGenerator
             {
                 try
                 {
-                    await client.GetAsync("http://hello-world");
+                    await client.GetAsync("http://hello-world/api");
                 }
                 catch (Exception e)
                 {

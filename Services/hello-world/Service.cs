@@ -1,27 +1,21 @@
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using Neon.Common;
 using Neon.Service;
-using Neon.Kube;
-using OpenTelemetry.Trace;
-using OpenTelemetry;
-using System.Diagnostics;
+
 using HelloWorld.Controllers;
-using Neon.Kube.PortForward;
-using Neon.Diagnostics;
-using k8s;
-using k8s.Models;
-using System.Linq;
-using Neon.Net;
+
+using OpenTelemetry;
+using OpenTelemetry.Trace;
 
 namespace HelloWorld
 {

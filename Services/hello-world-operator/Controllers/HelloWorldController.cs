@@ -27,6 +27,7 @@ using Neon.Kube.Operator.Rbac;
 using Neon.Kube.Kube;
 using System.Linq;
 using Neon.Kube.Resources.Cluster;
+using Neon.Common;
 
 namespace HelloWorldOperator.Controllers
 {
@@ -305,7 +306,14 @@ namespace HelloWorldOperator.Controllers
                                         new V1ContainerPort(containerPort: 80, name: "http-web", protocol: "TCP"),
                                         new V1ContainerPort(containerPort: 9762, name: "http-metrics", protocol: "TCP")
                                     },
-                                    Env = new List<V1EnvVar>() { new V1EnvVar(name: "LOG_LEVEL", value: resource.Spec.LogLevel)},
+                                    Env = new List<V1EnvVar>() 
+                                    { 
+                                        new V1EnvVar(name: "LOG_LEVEL", value: resource.Spec.LogLevel),
+                                        new V1EnvVar(name: "POD_NAMESPACE", valueFrom: new V1EnvVarSource(fieldRef: new V1ObjectFieldSelector("metadata.namespace"))),
+                                        new V1EnvVar(name: "POD_NAME", valueFrom: new V1EnvVarSource(fieldRef: new V1ObjectFieldSelector("metadata.name"))),
+                                        new V1EnvVar(name: "NODE_NAME", valueFrom: new V1EnvVarSource(fieldRef: new V1ObjectFieldSelector("spec.nodeName"))),
+                                        new V1EnvVar(name: "STORAGE_TYPE", value: resource.Spec.StorageType.ToMemberString()),
+                                    },
                                     LivenessProbe = new V1Probe()
                                     {
                                         Exec = new V1ExecAction()
@@ -745,12 +753,12 @@ namespace HelloWorldOperator.Controllers
                     new V1GrafanaDatasource()
                     {
                         DatasourceName = "Mimir",
-                        InputName = "DS_MIMIR"
+                        InputName      = "DS_MIMIR"
                     },
                     new V1GrafanaDatasource()
                     {
                         DatasourceName = "Loki",
-                        InputName = "DS_LOKI"
+                        InputName      = "DS_LOKI"
                     }
                 },
                 Json = Program.Resources.GetFile("/dashboard.json").ReadAllText()

@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="prefetch" href="/images/neonkube.png" />
+</head>
+<body>
+    <img src="/images/neonkube.png" class="logo"/>
+    <br />
+    <a href='/'>[Home]</a>
+    <a href='/storage'>[Storage]</a>
+    <form action="kill" method="post" class="inline">
+        <input type="hidden" name="killpod" value="Kill pod" />
+        <button type="submit" name="submit_param" value="submit_value" class="link-button">[Kill Pod]</button>
+    </form>
+    <div class="content">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>

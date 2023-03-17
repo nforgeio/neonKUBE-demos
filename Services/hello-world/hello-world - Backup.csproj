@@ -19,26 +19,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!-- extends watching group to include *.js files -->
         <Watch Include="**\*.razor" />
         <Watch Include="**\*.cs" />
         <Watch Include="**\*.razor.cs" />
         <Watch Include="**\*.css" />
         <Watch Include="**\*.cshtml" />
-        <Watch Include="**\*.js" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
+        <Watch Include="**\*.js" />
     </ItemGroup>
 
     <ItemGroup>
-      <Watch Remove="Pages\GoodBye.cshtml" />
-      <Watch Remove="Pages\Index - Copy.cshtml.cs" />
-      <Watch Remove="Pages\Shared\_Layout.cshtml" />
-      <Watch Remove="Pages\Shared\_Layout.cshtml.css" />
-      <Watch Remove="Pages\Storage.cshtml" />
-      <Watch Remove="wwwroot\css\site.css" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="wwwroot\images\" />
+        <Folder Include="wwwroot\css\" />
     </ItemGroup>
 
 </Project>

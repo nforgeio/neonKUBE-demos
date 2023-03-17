@@ -1,0 +1,32 @@
+﻿@page
+@model StorageModel
+@{
+    ViewData["Title"] = "Storage";
+}
+
+<div id="message">
+    <div id="storage-info">
+    <table>
+        <tr>
+            <th>Current text: </th>
+            <td>@Model.CurrentText</td>
+            </tr>
+            <tr>
+                <th>Storage Type: </th>
+                <td>@Model.StorageType</td>
+            </tr>
+            <tr>
+                <th>pod:</th>
+                <td>@Model.PodName</td>
+            </tr>
+        </table>
+        <form action="savetext" method="post">
+            <label for="sometext">Change text:</label>
+            <input type="text" id="sometext" name="sometext" value="">
+            <input type="submit" value="Change Text">
+        </form>
+    </div>
+</div>
+<div class="info">
+    <a href="https://docs.neonforge.com/docs/neonkube/volumes-storage" target="_blank">Storage Documentation</a>.
+</div>

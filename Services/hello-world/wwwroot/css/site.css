@@ -1,0 +1,88 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: auto;
+    margin-top: 100px;
+    background-color: #333333;
+    text-align: center;
+}
+
+div.main img {
+    margin: 40px 0;
+}
+
+div.content {
+    color: #f2f2f2;
+}
+
+a {
+    color: white;
+    font-weight: 100;
+    font-size: 18pt;
+}
+
+.logo{
+    height: 150px;
+}
+
+.content #message {
+    margin: 30px 0 50px 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    font-size: 32pt;
+    background-color: #505050;
+    border-top: 2px solid #909090;
+    border-bottom: 2px solid #909090;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: #4CAF50;
+    height: 175px;
+}
+
+.content #info {
+    margin: 0 auto;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    font-size: 12pt;
+}
+
+.content #storage-info {
+    font-weight: 300;
+    font-size: 18pt;
+    height: 175px;
+}
+
+.content table {
+    margin: 10px auto;
+}
+
+.content table th {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.content table td {
+    text-align: left;
+}
+
+.inline {
+    display: inline;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    color: white;
+    font-weight: 100;
+    font-size: 16pt;
+    padding: 0;
+}
+
+.link-button:focus {
+    outline: none;
+}
