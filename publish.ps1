@@ -17,6 +17,8 @@ else
 if (!$registry)
 {
   $registry = "neon-registry.$clusterDomain/library"
+
+  Write-Host "Pushing images to: $registry"
 }
 
 $mypath = $MyInvocation.MyCommand.Path
