@@ -34,8 +34,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manifests", "Manifests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello-world-operator", "services\hello-world-operator\hello-world-operator.csproj", "{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{CDE12B2B-C7DE-4446-8461-ABF1E6D59320}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,10 +52,6 @@ Global
 		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDE12B2B-C7DE-4446-8461-ABF1E6D59320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDE12B2B-C7DE-4446-8461-ABF1E6D59320}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDE12B2B-C7DE-4446-8461-ABF1E6D59320}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDE12B2B-C7DE-4446-8461-ABF1E6D59320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,7 +60,6 @@ Global
 		{522D5433-B5A2-447D-ACF9-DAA0F39F88D8} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
 		{B0333B14-7106-46C4-A9E8-B84A6AFACE30} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
 		{5F22ABB9-0B0D-4E19-B0DA-35C4BEBE7923} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
-		{CDE12B2B-C7DE-4446-8461-ABF1E6D59320} = {2DD2218D-CD03-4F51-8F88-500CAD514BD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90D8FBE4-43D4-4DF7-ACBD-5F47E6DC5B6C}
