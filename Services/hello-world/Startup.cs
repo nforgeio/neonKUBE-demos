@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Neon.Diagnostics;
 
 using Prometheus;
+using System.Net;
 
 namespace HelloWorld
 {
@@ -40,7 +41,14 @@ namespace HelloWorld
             app.UseResponseCompression();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseHttpMetrics();
+            app.UseHttpMetrics(options =>
+            {
+                options.ConfigureMeasurements(measurementOptions =>
+                {
+                    // Only measure exemplar if the HTTP response status code is not "OK".
+                    measurementOptions.ExemplarPredicate = context => context.Response.StatusCode != 200;
+                });
+            });
             app.UseMetricServer(options =>
             {
                 options.EnableOpenMetrics = true;
