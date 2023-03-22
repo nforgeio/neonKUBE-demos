@@ -31,10 +31,10 @@ namespace HelloWorld.Controllers
         public static string DataDirPath = "/var/helloworld";
         public static string TextPath    = $"{DataDirPath}/some.txt";
 
-        private Service     helloWorldService;
-        private ILogger     logger;
-        private string      podNamespace;
-        private string      podName;
+        private Service                  helloWorldService;
+        private ILogger<HelloController> logger;
+        private string                   podNamespace;
+        private string                   podName;
 
         public HelloController(
             Service helloWorldService, 
@@ -58,8 +58,7 @@ namespace HelloWorld.Controllers
             // cause some errors
             if (NeonHelper.PseudoRandomInt(100) <= 10)
             {
-                var error = new Exception();
-                logger?.LogErrorEx(error, "There was a bug in the code.");
+                logger?.LogErrorEx(() => "There was a bug in the code.");
 
                 if (NeonHelper.PseudoRandomInt(3) < 1)
                 {

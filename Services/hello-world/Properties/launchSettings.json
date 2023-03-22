@@ -6,7 +6,8 @@
       "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "TRACE_COLLECTOR_URI": "http://localhost:4317"
+        "TRACE_COLLECTOR_URI": "http://localhost:4317",
+        "LOG_LEVEL": "ERROR"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5043"

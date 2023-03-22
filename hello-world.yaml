@@ -5,9 +5,9 @@ metadata:
   labels:
     app: hello-world
 spec:
-  logLevel: info
-  helloWorldReplicas: 3
-  loadGeneratorReplicas: 2
-  storageType: nfs
-  ssoEnabled: true
-  neonDashboardEnabled: true
+  logLevel: error
+  helloWorldReplicas: 1
+  loadGeneratorReplicas: 1
+  storageType: ephemeral
+  ssoEnabled: false
+  neonDashboardEnabled: false
