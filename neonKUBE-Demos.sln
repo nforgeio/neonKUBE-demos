@@ -26,8 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manifests", "Manifests", "{
 		dashboard.yaml = dashboard.yaml
 		demo-cheats.txt = demo-cheats.txt
 		hello-world-operator.yaml = hello-world-operator.yaml
+		hello-world.yaml = hello-world.yaml
 		helloworld-standalone.yaml = helloworld-standalone.yaml
-		helloworld.yaml = helloworld.yaml
 		loadgen.yaml = loadgen.yaml
 		publish.ps1 = publish.ps1
 	EndProjectSection
