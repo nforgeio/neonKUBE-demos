@@ -29,7 +29,6 @@ if ($build)
 {
   cd $DEMO_DIR\Services\hello-world-operator
   dotnet publish hello-world-operator.csproj -c Release -o .\bin\Release\7.0\publish
-  unix-text docker-entrypoint.sh
   docker build -t $registry/hello-world-operator .
 }
 else
@@ -48,7 +47,6 @@ if ($build)
 {
   cd $DEMO_DIR\Services\hello-world
   dotnet publish hello-world.csproj -c Release -o .\bin\Release\7.0\publish
-  unix-text docker-entrypoint.sh
   docker build -t $registry/hello-world .
 }
 else
@@ -68,7 +66,6 @@ if ($build)
 {
   cd $DEMO_DIR\Services\load-generator
   dotnet publish load-generator.csproj -c Release -o .\bin\Release\7.0\publish
-  unix-text docker-entrypoint.sh
   docker build -t $registry/load-generator .
 }
 else 
