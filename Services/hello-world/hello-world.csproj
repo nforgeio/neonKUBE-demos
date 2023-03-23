@@ -9,8 +9,8 @@
 
     <ItemGroup>
         <PackageReference Include="Neon.Kube" Version="0.8.9-alpha" />
-        <PackageReference Include="Neon.Service" Version="3.0.0-preview0" />
-        <PackageReference Include="Neon.Web" Version="3.0.0-preview0" />
+        <PackageReference Include="Neon.Service" Version="3.0.0" />
+        <PackageReference Include="Neon.Web" Version="3.0.0" />
         <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.4.0" />
         <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.14" />
         <PackageReference Include="prometheus-net" Version="8.0.0" />
