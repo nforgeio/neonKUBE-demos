@@ -313,6 +313,7 @@ namespace HelloWorldOperator.Controllers
                                         new V1EnvVar(name: "POD_NAME", valueFrom: new V1EnvVarSource(fieldRef: new V1ObjectFieldSelector("metadata.name"))),
                                         new V1EnvVar(name: "NODE_NAME", valueFrom: new V1EnvVarSource(fieldRef: new V1ObjectFieldSelector("spec.nodeName"))),
                                         new V1EnvVar(name: "STORAGE_TYPE", value: resource.Spec.StorageType.ToMemberString()),
+                                        new V1EnvVar(name: "CLUSTER_DOMAIN", value: clusterInfo.Domain),
                                     },
                                     LivenessProbe = new V1Probe()
                                     {
